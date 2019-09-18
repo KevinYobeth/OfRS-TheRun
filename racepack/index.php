@@ -1,11 +1,25 @@
+<?php
+$servername = "localhost";
+$username = "kevinyobeth";
+$password = "kevinyobeth";
+$dbname = "therun";
+
+// Create connection
+$conn = mysqli_connect($servername, $username, $password, $dbname);
+// Check connection
+
+
+mysqli_close($conn);
+?>
+
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>OfRS | Registration</title>
+		<title>OfRS | RacePack</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
-		<link rel="icon" href="images/favicon.png" type="image/png" sizes="32x32">
+		<link rel="icon" href="../images/favicon.png" type="image/png" sizes="32x32">
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 	</head>
 	<body class="is-preload">
@@ -16,55 +30,28 @@
 				<!-- Header -->
 					<header id="header">
 						<div class="logo">
-							<span " class="fa fa-adjust"></span>
+							<span class="fa fa-adjust"></span>
 						</div>
 						<div class="content">
 							<div class="inner"></div>
 								<article id="register">
-									<center><h2 class="major">Offline Registration</h2></center>
+									
+									<center><h2 class="major">
+									<?php
+									if (!$conn) {
+										echo "Please Re-Import Database";	
+									} else {
+										echo "RacePack Collection";
+									}
+									?>
+									</h2></center>
 
-									<form method="post" action="submit.php">
+									<form method="post" action="racepack.php">
 										<div class="fields">
 
-											<div class="field half">
+											<div class="field">
 												<label for="fullname">Full Name</label>
 												<input type="text" name="fullname" id="fullname" required/>
-											</div>
-
-											<div class="field half">
-												<label for="email">Email</label>
-												<input type="email" name="email" id="email" required/>
-											</div>
-
-											<div class="field quarter">
-												<label for="notelp">No Telp</label>
-												<input type="text" name="notelp" id="notelp" required/>
-											</div>
-
-											<div class="field quarter">
-												<label for="gender">Gender</label>
-												<select name="gender" id="gender" required>
-													<option value="">-</option>
-													<option value="Male">Male</option>
-													<option value="Female">Female</option>
-													<option value="Others">Others</option>
-												</select>
-											</div>
-
-											<div class="field quarter">
-												<label for="bloodtype">Blood Type</label>
-												<select name="bloodtype" id="bloodtype" required>
-													<option value="">-</option>
-													<option value="A">A</option>
-													<option value="B">B</option>
-													<option value="AB">AB</option>
-													<option value="O">O</option>
-												</select>
-											</div>
-
-											<div class="field quarter">
-												<label for="idcard">ID Card</label>
-												<input placeholder="KTP / SIM / Kartu Pelajar" type="text" name="idcard" id="idcard" required/>
 											</div>
 
 											<div class="field third">
@@ -246,61 +233,6 @@
 															<option value="1905">1900</option>
 														</select>
 											</div>
-
-											<div class="field">
-												<label for="message">Address</label>
-												<textarea name="Address" id="Address" rows="1" required></textarea>
-											</div>
-											
-											<div class="field quarter">
-													<label for="illnesshistory">Illness History</label>
-													<input type="text" name="illnesshistory" id="illnesshistory" placeholder="Leave blank if there is none" />
-												</div>
-
-											<div class="field quarter">
-													<label for="emergencycontactname">Emergency Contact Name</label>
-													<input type="text" name="emergencycontactname" id="emergencycontactname" required/>
-												</div>
-
-											<div class="field quarter">
-													<label for="emergencycontactnumber">Emergency Contact No</label>
-													<input type="text" name="emergencycontactnumber" id="emergencycontactnumber" required/>
-												</div>
-
-											<div class="field quarter">
-													<label for="emergencycontactrelation">Relation</label>
-													<select name="emergencycontactrelation" id="emergencycontactrelation" required>
-															<option value="">-</option>
-															<option value="Parent">Parent</option>
-															<option value="Friend">Friend</option>
-															<option value="Family">Family</option>
-															<option value="Spouse">Spouse</option>
-															<option value="Sibling">Sibling</option>
-															<option value="Other">Other</option>
-													</select>
-												</div>
-
-											<div class="field third">
-												<img src="images/Baju.png" alt="HTML5 Icon" style="width:300px; height:auto;">
-											</div>
-
-											<div class="field third">
-													<label for="shirtsize">Shirt Size</label>
-													<select name="shirtsize" id="shirtsize" required>
-															<option value="">-</option>
-															<option value="XS">XS - 46/67</option>
-															<option value="S">S - 48/69</option>
-															<option value="M">M - 50/71</option>
-															<option value="L">L - 52/73</option>
-															<option value="XL">XL - 54/75</option>
-													</select>
-												</div>
-
-												<div class="field third">
-													<br><br>
-													<input type="checkbox" id="cashortrf" name="cashortrf" checked>
-													<label for="cashortrf">Cash</label>
-												</div>
 
 										</div>
 										

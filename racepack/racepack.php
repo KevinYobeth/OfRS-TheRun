@@ -11,16 +11,24 @@ if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-$result = mysqli_query($conn,"SELECT * FROM userdata ORDER BY ID DESC");
+$result = mysqli_query($conn,"SELECT * FROM userdata WHERE fullname LIKE '%{$_POST['fullname']}%' AND dateofbirth LIKE '%{$_POST['dateofbirth']}%' AND monthofbirth LIKE '%{$_POST['monthofbirth']}%' AND yearofbirth LIKE '%{$_POST['yearofbirth']}%'");
 
 $num_rows = mysqli_num_rows($result);
 mysqli_close($conn);
 ?>
 
+<script>
+function createbtn() {
+    var btn = document.createElement("BUTTON");
+    var t = document.createTextNode("CLICK ME");
+    btn.appendChild(t);
+    document.body.appendChild(btn);
+}
+</script>
 
 <html>
 	<head>
-		<title>OfRS | Data Center</title>
+		<title>OfRS | Race Pack Collection</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
@@ -46,13 +54,7 @@ mysqli_close($conn);
 							<th>No Telp</th>
 							<th>Blood Type</th>
 							<th>ID Card</th>
-							<th>Date of Birth</th>
-							<th>Month of Birth</th>
-							<th>Year of Birth</th>
 							<th>Shirt Size</th>
-							<th>Payment Method</th>
-							<th>Verification Code</th>
-							<th>Bundling Code</th>
 						</tr>	
 							</thead>
 
@@ -66,13 +68,7 @@ mysqli_close($conn);
 			echo "<td>" . $row['notelp'] . "</td>";
 			echo "<td>" . $row['bloodtype'] . "</td>";
 			echo "<td>" . $row['idcard'] . "</td>";
-			echo "<td>" . $row['dateofbirth'] . "</td>";
-			echo "<td>" . $row['monthofbirth'] . "</td>";
-			echo "<td>" . $row['yearofbirth'] . "</td>";
-			echo "<td>" . $row['shirtsize'] . "</td>";
-			echo "<td>" . $row['methodofpayment'] . "</td>";
-			echo "<td>" . $row['verificationcode'] . "</td>";
-			echo "<td>" . $row['bundlingcode'] . "</td>";
+            echo "<td>" . $row['shirtsize'] . "</td>";
 			echo "</tr>";
 			}
 ?>	
@@ -83,11 +79,10 @@ mysqli_close($conn);
 					<td colspan="2"></td>
 					<td></td>
 					</tr>
-
-
-					<h4>Total Entry: <?php echo "$num_rows" ?></h4>
 					</tfoot>
 					</table>
+                    
+    <button onclick="createbtn()">Create</button>
 					</div> 
 				    <br>
 			
